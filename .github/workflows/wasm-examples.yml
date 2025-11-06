@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies
-        run: apt-get update; apt-get install --no-install-recommends libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev build-essential binaryen
+        run: apt-get update; apt-get install --yes --no-install-recommends libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev build-essential binaryen
       - name: Install nightly
         uses: actions-rs/toolchain@v1
         with:

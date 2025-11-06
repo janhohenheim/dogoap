@@ -89,7 +89,7 @@ fn main() {
     .add_systems(
         FixedUpdate,
         (
-            make_plan.run_if(on_timer(Duration::from_millis(500))),
+            update_plan.run_if(on_timer(Duration::from_millis(500))),
             handle_pickup_lemonade,
             handle_drink_lemonade,
             handle_place_order,
@@ -422,9 +422,9 @@ fn setup(mut commands: Commands) {
     commands.spawn(Camera2d);
 }
 
-fn make_plan(planners: Query<Entity, With<Planner>>, mut commands: Commands) {
+fn update_plan(planners: Query<Entity, With<Planner>>, mut commands: Commands) {
     for planner in planners.iter() {
-        commands.entity(planner).trigger(MakePlan::from);
+        commands.entity(planner).trigger(UpdatePlan::from);
     }
 }
 

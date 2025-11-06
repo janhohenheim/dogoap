@@ -8,7 +8,7 @@ pub use dogoap::prelude::{Action, Compare, Datum, Goal, LocalState, Mutator};
 pub use crate::{
     create_planner,
     planner::IsPlanning,
-    planner::{MakePlan, Planner},
+    planner::{Planner, UpdatePlan},
     register_actions, register_components,
 };
 

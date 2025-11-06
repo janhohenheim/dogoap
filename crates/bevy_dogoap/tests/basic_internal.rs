@@ -99,12 +99,12 @@ fn startup(mut commands: Commands) {
     commands
         .entity(entity)
         .insert((planner, (IsHungry(true), IsTired(true))))
-        .trigger(MakePlan::from);
+        .trigger(UpdatePlan::from);
 }
 
 fn start_new_plan(mut commands: Commands, planner: Query<Entity, With<Planner>>) {
     for planner in planner.iter() {
-        commands.entity(planner).trigger(MakePlan::from);
+        commands.entity(planner).trigger(UpdatePlan::from);
     }
 }
 

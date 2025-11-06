@@ -109,7 +109,7 @@ pub(crate) fn update_planner_local_state(
     Ok(())
 }
 
-/// A formulated plan. This is created and inserted into [`Planner`] for you when you trigger [`MakePlan`].
+/// A formulated plan. This is created and inserted into [`Planner`] for you when you trigger [`UpdatePlan`].
 #[derive(Debug, Clone, Reflect, PartialEq)]
 pub struct Plan {
     /// Queue of action keys, last is current
@@ -123,7 +123,7 @@ pub struct Plan {
 /// Entity event that can be triggered on an entity that holds a [`Planner`]
 /// to kickstart a new plan. If a planner is already computing a plan, the event is ignored.
 #[derive(EntityEvent, Clone, Debug)]
-pub struct MakePlan {
+pub struct UpdatePlan {
     /// The entity that holds the [`Planner`]
     #[event_target]
     pub planner: Entity,
@@ -132,7 +132,7 @@ pub struct MakePlan {
     pub goals: Option<Vec<Goal>>,
 }
 
-impl From<Entity> for MakePlan {
+impl From<Entity> for UpdatePlan {
     fn from(entity: Entity) -> Self {
         Self {
             planner: entity,
@@ -144,7 +144,7 @@ impl From<Entity> for MakePlan {
 /// This observer is responsible for finding [`Planner`]s that aren't alreay computing a new plan,
 /// and creates a new task for generating a new plan
 pub(crate) fn create_planner_tasks(
-    plan: On<MakePlan>,
+    plan: On<UpdatePlan>,
     mut commands: Commands,
     planner: Query<&Planner, Without<PlanReceiver>>,
     names: Query<NameOrEntity, Allow<Disabled>>,

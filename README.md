@@ -53,7 +53,7 @@ fn setup(mut commands: Commands) {
     // Add `planner` + `components` to your Entity, or spawn a new one
     commands
         .spawn((Name::new("Planner"), planner, components))
-        .trigger(MakePlan::from);
+        .trigger(UpdatePlan::from);
 }
 
 // System for handling EatAction

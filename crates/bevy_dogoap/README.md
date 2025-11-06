@@ -40,7 +40,7 @@ fn startup(mut commands: Commands) {
     // Spawn a entity with our Planner component + the DatumComponents
     commands
         .spawn((Name::new("Planner"), planner, components))
-        .trigger(MakePlan::from);
+        .trigger(UpdatePlan::from);
 }
 
 // Create our system that handles executing of the EatAction

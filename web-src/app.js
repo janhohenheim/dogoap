@@ -1,17 +1,13 @@
-import initMiner from './wasm/examples/miner.js'
-import initCells from './wasm/examples/cells.js'
-
 import { highlightAll } from './3rd-party/speed-highlight.js'
 
 const example = window.location.hash.substr(1) || "cells"
 
-if (example === "miner") {
-  initMiner()
-} else if (example === "cells") {
-  initCells()
-} else {
-  // impossible?!
-}
+import(`./wasm/examples/${example}.js`).then((module) => {
+  module.default()
+}).catch(err => {
+// impossible?!
+  window.alert(err)
+})
 
 document.querySelector(`a[href="#${example}"]`).classList.add("active")
 

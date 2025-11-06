@@ -18,6 +18,9 @@ jobs:
       matrix:
         rust-toolchain: [ "stable", "nightly-2025-05-22" ]
     steps:
+      - name: Install git
+        run: apt-get update && apt-get install --no-install-recommends git
+
       - uses: actions/checkout@v4
 
       - name: Install dependencies

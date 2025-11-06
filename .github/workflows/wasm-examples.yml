@@ -28,6 +28,8 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
     steps:
+      - name: Install git
+        run: apt-get update && apt-get install --no-install-recommends git
       - name: Checkout
         uses: actions/checkout@v4
       - name: Install dependencies

@@ -21,7 +21,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Install dependencies
-        run: apt-get update && apt-get install --yes --no-install-recommends libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev
+        run: apt-get update && apt-get install --yes build-essential curl ca-certificates libasound2-dev libudev-dev libwayland-dev libxkbcommon-dev
 
       - name: Install Rust toolchain
         uses: actions-rs/toolchain@v1
